@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="arpos_SM.InputViews.AlertConfirmation">
+  <ContentView.Content>
+        <Grid
+            Padding="10"
+            BackgroundColor="White"
+            HorizontalOptions="CenterAndExpand"
+            RowSpacing="5"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="300" >
+            <Label
+                x:Name="lblTitle1"
+                Grid.Row="0"
+                Grid.Column="0"
+                FontSize="Medium"
+                TextColor="Red"
+                Text="PERHATIAN" />
+            <Label
+                x:Name="lblMsg"
+                Grid.Row="1"
+                Grid.Column="0"
+                FontSize="Medium"
+                TextColor="Black"
+                Text="Akan Menghapus ...." />
+            <Label
+                x:Name="ValidationLabel"
+                Grid.Row="2"
+                Grid.Column="0"
+                FontSize="Micro"
+                IsVisible="False"
+                Text="Ops!"
+                TextColor="Red" />
+            <Grid
+                Grid.Row="3"
+                Grid.Column="0"
+                >
+                <Button
+                    x:Name="ConfirmButton"
+                    Grid.Column="0"
+                    BackgroundColor="DodgerBlue"
+                    Text="Delete"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                <Button
+                    x:Name="CancelButton"
+                    Grid.Column="1"
+                    BackgroundColor="Gray"
+                    Text="Cancel"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

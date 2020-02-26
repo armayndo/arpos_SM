@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+	         xmlns:customControls="clr-namespace:arpos_SM;assembly=arpos_SM"
+             x:Class="arpos_SM.InputViews.PaymentInputView">
+  <ContentView.Content>
+        <Grid
+            Padding="10"
+            BackgroundColor="White"
+            HorizontalOptions="CenterAndExpand"
+            RowSpacing="5"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="300">
+            <Label
+                x:Name="lblTitle"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Medium"
+                TextColor="Black"
+                Text="Pembayaran"/>
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                FontSize="Small"
+                Text="Nama Pelanggan : "/>
+            <Entry
+                Grid.Row="1"
+                Grid.Column="1"
+                x:Name="txNmPel"
+                FontSize="Small"
+                Placeholder="Nama Pelanggan"/>
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                FontSize="Small"
+                Text="Pembayaran : "/>
+            <Picker
+                x:Name="PickerList" IsVisible="False" SelectedIndex="1"
+                SelectedIndexChanged="PickerList_OnSelectedIndexChanged"
+                >
+                <Picker.Items>
+                    <x:String>Cash</x:String>
+                    <x:String>Transfer</x:String>
+                    <x:String>Hutang</x:String>
+                </Picker.Items>
+            </Picker>
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                x:Name="PickerLabel" Text="Tap to select option"
+               FontSize="Small" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PickerLabel_OnTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                FontSize="Small"
+                Text="Grand Total (Rp) : "/>
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                FontSize="Small"
+                TextColor="Black"
+                x:Name="txTotal"/>
+            <Label
+                Grid.Row="4"
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                FontSize="Small"
+                Text="Bayar (Rp) : "
+                x:Name="lblBayar"/>
+            <Entry
+                Grid.Row="4"
+                Grid.Column="1"
+                FontSize="Small"
+                Keyboard="Numeric"
+                TextChanged="txBayar_TextChanged"
+                x:Name="txBayar"/>
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                FontSize="Small"
+                Text="Uang Kembali (Rp) : "/>
+            <Label
+                Grid.Row="5"
+                Grid.Column="1"
+                FontSize="Small"
+                TextColor="Black"
+                x:Name="txKembali"/>
+            <Label
+                x:Name="ValidationLabel"
+                Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Micro"
+                IsVisible="False"
+                Text="Ops! Looks like you've missed something!"
+                TextColor="Red" />
+
+            <Grid
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <Button
+                    Clicked="TrnCloseButton_Clicked"
+                    x:Name="TrnCloseButton"
+                    Grid.Column="0"
+                    BackgroundColor="DodgerBlue"
+                    Text="Close Trn"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                <Button
+                    x:Name="CancelButton"
+                    Grid.Column="1"
+                    BackgroundColor="Gray"
+                    Text="Cancel"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <customControls:NativeButton Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" x:Name="SaveBill" IsEnabled="False" Text="Save Bill" TextColor="White" BackgroundColor="Teal" FontSize="Small" HeightRequest="35" />
+
+            <!--<Grid
+                Grid.Row="8"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <Button
+                    x:Name="SaveButton"
+                    Grid.Column="0"
+                    BackgroundColor="DodgerBlue"
+                    Text="Save"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                
+                <Button
+                    x:Name="BillButton"
+                    Grid.Column="1"
+                    BackgroundColor="Gray"
+                    Text="Bill"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+            </Grid>-->
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+        </Grid>
+  </ContentView.Content>
+</ContentView>

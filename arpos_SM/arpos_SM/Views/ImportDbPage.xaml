@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="arpos_SM.Views.ImportDbPage" 
+	     Title="Update DB">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="txDbStat" Text="DB Last Update : 2018-12-31"/>
+            <Button Text="Browse File" Clicked="OnBrowse"/>
+            <Label Text="Nama File :"/>
+            <Label x:Name="fileName"/>
+            <Label Text="Path File :"/>
+            <Label x:Name="filePath" />
+            <Button Text="Update DB" Clicked="OnUpdateClick" />
+            <ProgressBar x:Name="progBar" Progress="0" />
+            <Label x:Name="lblStatus" />
+            <ActivityIndicator x:Name="actIndicator" Color="Blue"/>
+            <Button Text="Count Data" Clicked="OnSaveClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

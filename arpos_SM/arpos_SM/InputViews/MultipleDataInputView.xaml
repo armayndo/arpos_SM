@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="arpos_SM.InputViews.MultipleDataInputView"
+	     xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms">
+  <ContentView.Content>
+            <Grid
+            Padding="10"
+            BackgroundColor="White"
+            HorizontalOptions="CenterAndExpand"
+            RowSpacing="5"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="300">
+            <Label
+                x:Name="lblTitle1"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Medium"
+                Text="Nama Barang" />
+            <Label
+                x:Name="lblHarga"
+                Grid.Row="1"
+                Grid.Column="0"
+                FontSize="Medium"
+                TextColor="Black"
+                Text="Rp:-/Pcs" />
+
+            <Label
+                x:Name="lblSatJual"
+                Grid.Row="1"
+                Grid.Column="1"
+                FontSize="Micro"
+                TextColor="Black"
+                Text="Sale /200 Gr" />
+
+            <Label
+                x:Name="lblTitle2"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Small"
+                Text="Harga Disc :" />
+
+            <!--ItemsSource="{Binding LstDisc}"-->
+            <ListView x:Name="lvDiscDet" 
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2" >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding NM_BRG}" Detail="{Binding DETAIL}" DetailColor="Black" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <!--<Label
+                x:Name="InputSliderValueLabel"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="[ slide to set a value ]" />-->
+            <!--<Slider
+                x:Name="AgeSlider"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Maximum="10"
+                Minimum="0" />-->
+            <Label
+                x:Name="lblTotharga"
+                Grid.Row="4"
+                Grid.Column="0"
+                FontSize="Medium"
+                TextColor="Black"
+                Text="Rp :" />
+            <numeric:SfNumericUpDown x:Name="numericUpDown" ParsingMode="Decimal" FormatString="n" MaximumDecimalDigits="0" 
+                SpinButtonAlignment="Both"
+                Grid.Row="4"
+                Grid.Column="1" />
+
+
+            <Label
+                x:Name="ValidationLabel"
+                Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                FontSize="Micro"
+                IsVisible="False"
+                Text="Ops! Looks like you've missed something!"
+                TextColor="Red" />
+
+            <Grid
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <Button
+                    x:Name="SaveButton"
+                    Grid.Column="0"
+                    BackgroundColor="DodgerBlue"
+                    Text="Save"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                <Button
+                    x:Name="CancelButton"
+                    Grid.Column="1"
+                    BackgroundColor="Gray"
+                    Text="Cancel"
+                    TextColor="White">
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Android" Value="40" />
+                            <On Platform="iOS" Value="30" />
+                            <On Platform="Windows" Value="35" />
+                        </OnPlatform>
+                    </Button.HeightRequest>
+                </Button>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

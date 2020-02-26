@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="arpos_SM.Views.SearchDetPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ContentView
+            Grid.Row="0"
+            HorizontalOptions="Start"
+            VerticalOptions="Start" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Harga Jual"/>
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Text=" : "/>
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       x:Name="lblJual" TextColor="Black" />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Harga Modal"/>
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text=" : "/>
+                <Label Grid.Row="1"
+                       Grid.Column="2"
+                       x:Name="lblModal" Text="" TextColor="Black"/>
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Stok / Stk.Min"/>
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Text=" : "/>
+                <Label Grid.Row="2"
+                       Grid.Column="2"
+                       x:Name="lblStok" Text="" TextColor="Black"/>
+
+
+                <!--<RelativeLayout Grid.Row="4" Grid.ColumnSpan="4">
+                    <Label
+                       Text="Owner"/>
+                    <Label 
+                       Text=" : "/>
+                    <Label 
+                       x:Name="lblOwn" Text="" TextColor="Black"/>
+                    <Label 
+                       Text="Expired"/>
+                    <Label 
+                       Text=" : "/>
+                    <Label 
+                       x:Name="lblExp" Text="" TextColor="Black"/>
+                </RelativeLayout>-->
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Text="Owner / Exp"/>
+                <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Text=" : "/>
+                <Label Grid.Row="3"
+                       Grid.Column="2"
+                       x:Name="lblOwn" Text="" TextColor="Black"/>
+                <!--<Label Grid.Row="5"
+                       Grid.Column="0"
+                       Text="Expired"/>
+                <Label Grid.Row="5"
+                       Grid.Column="1"
+                       Text=" : "/>
+                <Label Grid.Row="5"
+                       Grid.Column="2"
+                       x:Name="lblExp" Text="" TextColor="Black"/>-->
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="Discount"/>
+                <Label Grid.Row="4"
+                       Grid.Column="1"
+                       Text=" : "/>
+                <Label Grid.Row="4"
+                       Grid.Column="2"
+                       x:Name="lblDis" Text="" TextColor="Black"/>
+                <!--
+              ItemsSource="{Binding LstDisc}"
+             BindingContext="{Binding Source ={local:ViewModels.SearchDetViewModel }}" 
+            -->
+                <ListView Grid.Row="5"
+                          Grid.ColumnSpan="4"
+                        x:Name="lvSearchDet"
+                        ItemsSource="{Binding LstDisc}"
+                      >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding NM_BRG}" Detail="{Binding DETAIL}" DetailColor="Black" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+
+            </Grid>
+            <!--<StackLayout x:Name="layout">
+
+
+            </StackLayout>-->
+
+        </ContentView>
+
+
+        <ContentView
+            Grid.Row="1"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"  >
+            <chart:SfChart x:Name="Chart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                <chart:SfChart.BindingContext>
+                    <!--<local:ViewModels.PersonViewModel/>-->
+                    <!--<local:ViewModels.SearchDetViewModel/>-->
+                </chart:SfChart.BindingContext>
+
+                <chart:SfChart.Legend>
+                    <chart:ChartLegend />
+                </chart:SfChart.Legend>
+
+                <chart:SfChart.Title>
+                    <chart:ChartTitle Text="Sales Trend"/>
+                </chart:SfChart.Title>
+
+                <chart:SfChart.PrimaryAxis>
+                    <chart:CategoryAxis>
+                        <chart:CategoryAxis.Title>
+                            <chart:ChartAxisTitle Text="Month"/>
+                        </chart:CategoryAxis.Title>
+                    </chart:CategoryAxis>
+                </chart:SfChart.PrimaryAxis>
+
+                <chart:SfChart.SecondaryAxis>
+                    <chart:NumericalAxis>
+                        <chart:NumericalAxis.Title>
+                            <chart:ChartAxisTitle Text="Jumlah (Pcs)"/>
+                        </chart:NumericalAxis.Title>
+                    </chart:NumericalAxis>
+                </chart:SfChart.SecondaryAxis>
+
+                <chart:SfChart.Series>
+                    <chart:ColumnSeries ItemsSource="{Binding Data}" Label="Penjualan" XBindingPath="YYYYMM" YBindingPath="PENJUALAN" EnableTooltip="True">
+                        <!--<chart:ColumnSeries.DataMarker>
+                            <chart:ChartDataMarker/>
+                        </chart:ColumnSeries.DataMarker>-->
+                    </chart:ColumnSeries>
+
+                    <chart:ScatterSeries ScatterHeight="10" ScatterWidth="10" ShapeType="Triangle" Color="BlueViolet" LegendIcon="Triangle" ItemsSource="{Binding Data}" Label="Penambahan" XBindingPath="YYYYMMP" YBindingPath="STOKADD" EnableTooltip="True">
+                    </chart:ScatterSeries>
+
+                    <chart:ScatterSeries ScatterHeight="10" ScatterWidth="10" ShapeType="InvertedTriangle" Color="Red" LegendIcon="InvertedTriangle" ItemsSource="{Binding Data}" Label="Rugi" XBindingPath="YYYYMM" YBindingPath="STOKMIN" EnableTooltip="True">
+                        <!--<chart:ColumnSeries.DataMarker>
+                            <chart:ChartDataMarker/>
+                        </chart:ColumnSeries.DataMarker>-->
+                    </chart:ScatterSeries>
+
+                    <chart:LineSeries ItemsSource="{Binding Data}" Label="Profit" XBindingPath="YYYYMM" YBindingPath="PROFIT" EnableTooltip="True">
+
+                        <chart:LineSeries.YAxis>
+
+                            <chart:NumericalAxis OpposedPosition="true" >
+
+                                <chart:NumericalAxis.Title>
+
+                                    <chart:ChartAxisTitle Text = "Rp" />
+
+                                </chart:NumericalAxis.Title>
+
+                            </chart:NumericalAxis>
+
+                        </chart:LineSeries.YAxis>
+                    </chart:LineSeries>
+
+                </chart:SfChart.Series>
+            </chart:SfChart>
+        </ContentView>
+
+
+    </Grid>
+
+    <ContentPage.Content>
+
+    </ContentPage.Content>
+</ContentPage>

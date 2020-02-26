@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="arpos_SM.Views.POSPage"
+             
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             
+             Title="P.O.S.">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Pay" x:Name="payBtn" Clicked="payBtn_OnClicked" >
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="paycc.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="New Transaction" Clicked="OnListItemDelAll" Icon="plus.png" x:Name="NewBtn" Order="Secondary" >
+            <!--<ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>-->
+        </ToolbarItem>
+        <ToolbarItem Text="View eBil" x:Name="eBilBtn"  Clicked="eBilBtn_Clicked" Order="Secondary" >
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="newbasket.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Send eBil" x:Name="btnShareBil" Clicked="btnShareBil_Clicked" Order="Secondary" >
+            
+        </ToolbarItem>
+        
+    </ContentPage.ToolbarItems>
+    
+    <!--<ContentPage.Behaviors>
+        <local:POSPageBehaviors />
+    </ContentPage.Behaviors>-->
+    
+    <!--<sfPopup:SfPopupLayout x:Name="popUpLayout">
+        <sfPopup:SfPopupLayout.Content>
+            <StackLayout x:Name="mainLayout">
+                <autocomplete:SfAutoComplete HeightRequest="40" x:Name="autoComplete" Watermark="Input Nama Barang" DataSource="{Binding ItemCollection}" AutoCompleteMode="Suggest"
+                                         SuggestionMode="Contains" TextHighlightMode="MultipleOccurrence" HighlightedTextColor="BlueViolet" NoResultsFoundText="No Results Found"
+                                         SuggestionBoxPlacement="Bottom" MaximumDropDownHeight="200">
+
+                </autocomplete:SfAutoComplete>
+                <numeric:SfNumericUpDown x:Name="numericUpDown2" Value="5" ParsingMode="Decimal" ></numeric:SfNumericUpDown>
+                <Button x:Name="clickToShowPopup" Text="ClickToShowPopup" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Clicked="OpenMultipleDataInputAlertDialogButton_OnClicked" />
+
+                <Label
+            x:Name="InputResultLabel"
+            Margin="0,10,0,10"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            Text="-Input Results will show up here-" />
+            </StackLayout>
+        </sfPopup:SfPopupLayout.Content>
+    </sfPopup:SfPopupLayout>-->
+    <ContentPage.Content>
+        <!--
+        VerticalOptions="Start" HorizontalOptions="Start" Padding="30"
+        -->
+        <StackLayout x:Name="mainLayout">
+            <Grid>
+                <autocomplete:SfAutoComplete HeightRequest="40" x:Name="autoComplete" Watermark="Input Nama Barang" DataSource="{Binding ItemCollection}" AutoCompleteMode="Suggest"
+                                         SuggestionMode="Contains" TextHighlightMode="MultipleOccurrence" HighlightedTextColor="BlueViolet" NoResultsFoundText="No Results Found"
+                                         SuggestionBoxPlacement="Bottom" MaximumDropDownHeight="200"
+                                             Grid.Row="0"
+                                             Grid.Column="0">
+
+                </autocomplete:SfAutoComplete>
+                <Button x:Name="btnSelect" Text="+" 
+                        Clicked="OpenMultipleDataInputAlertDialogButton_OnClicked"
+                        FontSize="Large"
+                        Grid.Row="0"
+                        Grid.Column="1"></Button>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            
+
+            <!--<Button x:Name="clickToShowPopup" Text="ClickToShowPopup" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Clicked="OpenMultipleDataInputAlertDialogButton_OnClicked" />-->
+
+            <ListView x:Name="lvCart" ItemTapped="OnListItemSelected"  SelectedItem="{Binding NOM}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding NM_BRG}" Detail="{Binding DETAIL}" DetailColor="Black" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            
+            <!--<Label
+            x:Name="InputResultLabel"
+            Margin="0,10,0,10"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            Text="-Input Results will show up here-" />-->
+            <Grid>
+                <Label 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Grand Total"
+                    FontSize="Medium"/>
+                <Label 
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="(Rp):"
+                    FontSize="Medium"/>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    x:Name="LblTotal"
+                    FontSize="Medium"
+                    TextColor="Black"
+                    Text="102,000"
+                    HorizontalTextAlignment="End"/>
+                <Label 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Pembulatan"
+                    FontSize="Medium"/>
+                <Label 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="(Rp):"
+                    FontSize="Medium"/>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    x:Name="LblPembulatan"
+                    FontSize="Medium"
+                    TextColor="Black"
+                    Text="102"
+                    HorizontalTextAlignment="End"/>
+                <Label 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Total Hemat"
+                    FontSize="Medium"/>
+                <Label 
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="(Rp):"
+                    FontSize="Medium"/>
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    x:Name="LblTotHemat"
+                    FontSize="Medium"
+                    TextColor="Black"
+                    Text="1,500"
+                    HorizontalTextAlignment="End"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            
+            <!--<Label
+                x:Name="LblTotal"
+                Margin="0,10,0,10"
+                FontSize="Medium"
+                Text="Rp.102,000" />-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

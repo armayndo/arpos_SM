@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="arpos_SM.Views.GenPkPage"
+	     Title="Passkey Gen">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Pass Key :" />
+            <Entry x:Name="pk0" Text="" FontSize="Large" />
+            <Label Text="Pass Key-1 :" />
+            <Entry x:Name="pk1" Text="" FontSize="Large"/>
+            <Label Text="Pass Key-2 :" />
+            <Entry x:Name="pk2" Text="" FontSize="Large"/>      
+            <Label Text="Pass Key-3 :" />
+            <Entry x:Name="pk3" Text="" FontSize="Large"/>
+            <Button Text="Generate" Clicked="OnGenerateClicked" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:arpos_SM.Asset"
+             x:Class="arpos_SM.Views.SearchPage" Title="Search">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ValueToColorConverter x:Key="ValueToColorConverters" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar x:Name="srcBar" HorizontalOptions="Center" Placeholder="Input Nama Barang" TextChanged="OnSearchBarTextChanged" SearchButtonPressed="OnSearchBarButtonPressed" >
+                <SearchBar.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double"
+                            iOS="-1.0"
+                            Android="40.0"
+                            WinPhone="-1">
+                    </OnPlatform>
+                </SearchBar.HeightRequest>
+            </SearchBar>
+            <ListView x:Name="lvSearch" ItemTapped="OnListItemSelected"  SelectedItem="{Binding ID_BRG}" 
+                   
+                      >
+                <!--
+                ItemSelected="OnListItemSelected"
+                
+                VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                 ItemsSource="{Binding LstInvt}" 
+                    
+                
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>-->
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding NM_BRG}" TextColor="{Binding ColorBehav1, Converter={StaticResource ValueToColorConverters}}" 
+                                  Detail="{Binding DETAIL}" DetailColor="{Binding STOK, Converter={StaticResource ValueToColorConverters}}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <!--<ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Label Text="{Binding NM_BRG}"  />
+                                    <StackLayout Orientation="Horizontal" >
+                                        <Label Text="{Binding STOK, StringFormat='Stok:{0}'}"  />
+                                        <Label Text="{Binding SATUAN}" />
+                                        <Label Text="{Binding HRG_JUAL, StringFormat='Harga:{0}'}" />
+                                        
+                                    </StackLayout>
+                                    
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>-->
+
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

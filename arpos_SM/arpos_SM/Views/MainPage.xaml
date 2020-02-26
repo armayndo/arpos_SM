@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="arpos_SM.Views.MainPage"
+	     Title="arPOS-SM">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Button 
+                    Text="P.O.S." 
+                    Clicked="OnPOSClicked" 
+                    Image="pos.png"
+                    ContentLayout="Top, 10"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    />
+                <Button 
+                    Text="Search" 
+                    Clicked="OnSearchClicked" 
+                    Image="search.png"
+                    ContentLayout="Top, 10"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    />
+                <Button 
+                    Text="Pass Key" 
+                    Clicked="OnPassKeyClicked" 
+                    Image="passkey.png"
+                    ContentLayout="Top, 10"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    />
+                <Button 
+                    Text="Update Database" 
+                    Clicked="OnUpdateClicked" 
+                    Image="updatedb.png"
+                    ContentLayout="Top, 10"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    />
+                <Label 
+                    IsVisible="False"
+                    x:Name="lblMain"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"/>
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150" />
+                    <RowDefinition Height="150" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
